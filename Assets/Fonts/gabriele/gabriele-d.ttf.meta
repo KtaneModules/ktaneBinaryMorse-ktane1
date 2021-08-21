@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: ab9d334f2bc7bb54b95dbb00f9641949
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Gabriele Dark Ribbon FG
+  fontNames:
+  - Gabriele Dark Ribbon FG
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
