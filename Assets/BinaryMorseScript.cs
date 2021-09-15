@@ -85,7 +85,7 @@ public class BinaryMorseScript : MonoBehaviour
             initialString += morseAlphabet[selectedLettersIndex[i]];
         }
         initialString = initialString.TrimEnd('0');
-        while (!(initialString.Length % 8 == 0))
+        while (initialString.Length % 8 != 0)
         {
             initialString = "0" + initialString;
         }
@@ -159,5 +159,63 @@ public class BinaryMorseScript : MonoBehaviour
         }          
     }
 
-    
+    //Twitch Plays
+#pragma warning disable 414
+    private readonly string TwitchHelpMessage = @"!{0} type 69420 to type 69420 into the module, !{0} submit to submit, !{0} clear to clear the display";
+#pragma warning restore 414
+    IEnumerator ProcessTwitchCommand(string command)
+    {
+        if (Regex.IsMatch(command, @"^\s*submit\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+        {
+            yield return null;
+            submit.OnInteract();
+            yield break;
+        }
+        else if (Regex.IsMatch(command, @"^\s*clear\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+        {
+            yield return null;
+            clear.OnInteract();
+            yield break;
+        }
+        string[] parameters = command.Split(' ');
+        bool untypable = false;
+        if (Regex.IsMatch(parameters[0], @"^\s*type\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+        {
+            for (int i = 0; i < parameters[1].Length; i++)
+            {
+                if (parameters[1][i] - '0' < 0 || parameters[1][i] - '0' > 9)
+                {
+                    untypable = true;
+                }     
+            }
+            if (parameters[1] == "")
+            {
+                yield return "sendtochaterror There's nothing to type.";
+                yield break;
+            }
+            else if (untypable)
+            {
+                yield return "sendtochaterror The module can only type numbers.";
+                yield break;
+            }
+            else
+            {
+                clear.OnInteract();
+                yield return null;
+                for (int i = 0; i < parameters[1].Length; i++)
+                {
+                    yield return new WaitForSeconds(0.1f);
+                    string comparer = parameters[1].ElementAt(i) + "";
+                    for (int j = 0; j < 10; j++)
+                    {
+                        if (comparer.Equals(j.ToString()))
+                        {
+                            buttons[j].OnInteract();
+                        }
+                    }
+
+                }
+            }
+        }
+    }
 }
