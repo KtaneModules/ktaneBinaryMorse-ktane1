@@ -218,4 +218,18 @@ public class BinaryMorseScript : MonoBehaviour
             }
         }
     }
+
+    IEnumerator TwitchHandleForcedSolve()
+    {
+        while (!moduleSolved)
+        {
+            for (int i = 0; i < finalAnswer.ToString().Length; i++)
+            {
+                buttons[finalAnswer.ToString()[i] - '0'].OnInteract();
+                yield return new WaitForSeconds(0.1f);
+            }
+            submit.OnInteract();
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
 }
