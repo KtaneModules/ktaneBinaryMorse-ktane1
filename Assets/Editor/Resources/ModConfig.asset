@@ -17,6 +17,6 @@ MonoBehaviour:
   description: "An implementation to one of my old ideas. Basically a combination
     of binary and morse code as a module.\r\n\r\nModule ID: binaryMorse\r\nManual
     Link: https://ktane.timwi.de/HTML/Binary%20Morse.html"
-  version: v1.3
+  version: v1.4
   outputFolder: build
   previewImage: {fileID: 2800000, guid: a63ca83a23b2e8f419983dfd708e4795, type: 3}
