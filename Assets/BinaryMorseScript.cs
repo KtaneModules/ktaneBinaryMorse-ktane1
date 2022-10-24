@@ -16,7 +16,7 @@ public class BinaryMorseScript : MonoBehaviour
     public TextMesh display;
     public TextMesh input;
 
-    private string[] morseAlphabet = { "10111000", "111010101000", "11101011101000", "1110101000", "1000", "101011101000", "111011101000", "1010101000", "101000", "1011101110111000", "111010111000", "101110101000", "1110111000", "11101000", "11101110111000", "10111011101000", "1110111010111000", "1011101000", "10101000", "111000", "1010111000", "101010111000", "101110111000", "11101010111000", "1110101110111000", "11101110101000" };
+    private string[] morseAlphabet = { "101100", "1101010100", "11010110100", "11010100", "100", "1010110100", "110110100", "101010100", "10100", "101101101100", "110101100", "1011010100", "1101100", "110100", "1101101100", "10110110100", "110110101100", "10110100", "1010100", "1100", "10101100", "1010101100", "101101100", "11010101100", "110101101100", "11011010100" };
     private string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private int[] selectedLettersIndex = new int[5];
     private int[] index = new int[5];
@@ -135,8 +135,26 @@ public class BinaryMorseScript : MonoBehaviour
                 module.HandlePass();
                 moduleSolved = true;
                 audio.PlaySoundAtTransform("correct", transform);
-                display.text = "NICE";
-                input.text = "YAY YOU DID IT";
+                int rnd = UnityEngine.Random.Range(0, 5);
+                switch (rnd)
+                {
+                    case 0:
+                        display.text = "NICE";
+                        break;
+                    case 1:
+                        display.text = "COOL";
+                        break;
+                    case 2:
+                        display.text = "YAY";
+                        break;
+                    case 3:
+                        display.text = "EPIC";
+                        break;
+                    case 4:
+                        display.text = "!!!";
+                        break;
+                }
+                input.text = "";
                 Debug.LogFormat("[Binary Morse #{0}] Correct answer submitted. Module solved.", moduleId);
             }
             else
